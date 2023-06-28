@@ -3,11 +3,20 @@ var generateBtn = document.querySelector("#generate");
 
 //password criteria
 function generatePassword(){
-  var length = prompt("Choose a lenghth between 8-128 characters long.");
-  var upperCase = prompt("Would you like to use upper case letters?");
-  var lowerCase = prompt("Would you like to use lowercase letters");
-  var numeric = prompt ("Would you like to use numeric characters?");
-  var special = prompt ("Would you like to use special characters?");
+  
+  var length = prompt ("Choose a lenghth between 8-128 characters long.");
+  var criteria = confirm ("Must choose one of the following criteria.");
+  var upperCase = confirm ("Would you like to use upper case letters?");
+  var lowerCase = confirm ("Would you like to use lowercase letters");
+  var numeric = confirm ("Would you like to use numeric characters?");
+  var special = confirm ("Would you like to use special characters?");
+}
+
+//validate criteria
+
+if (length < 8 || length > 128) {
+  alert ("Password length must be between 8 and 128 characters long.");
+  return;
 }
 
 
