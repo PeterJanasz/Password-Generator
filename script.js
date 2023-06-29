@@ -13,14 +13,12 @@ var specialArray = ["~","!","@","#","$","%","^","&","*","(",")","_","-","+","=",
 
 function userSelection(){
 // Prompts for user options
-
-// Add parseInt to convert string to number
   var length = parseInt(window.prompt ("Choose a lenghth between 8-128 characters long."));
   console.log(length);
 
   if (length < 8 || length > 128) {
     alert ("Password length must be between 8 and 128 characters long.");
-    return;
+    return window.prompt;
   }
   var criteria = window.alert ("Must choose one of the following criteria.");
   console.log(criteria);
@@ -39,16 +37,77 @@ function userSelection(){
     return;
   }
 
-  //select random index
-function randomIndex(array){
-  var randIndex = Math.floor(Math.random() * array.length);
-  console.log(randIndex);
-  
-  var randElement = array[randIndex];
-  console.log(randElement);
-  return randElement;
+  var userOptions = {
+    length:length,
+    upperCase:upperCase,
+    lowerCase:lowerCase,
+    numeric:numeric,
+    special:special,
   }
-  
+  return userOptions;
+}
+
+//select random index
+function randomIndex(array){
+var randIndex = Math.floor(Math.random() * array.length);
+console.log(randIndex);
+
+var randElement = array[randIndex];
+console.log(randElement);
+return randElement;
+}
+
+
+function generatePassword(){
+var options = userSelection();
+var result = [];
+var roughCharacters = [];
+var finalCharacter = [];
+
+//randomize character selections
+if (options.upperCase){
+  roughCharacters = roughCharacters.concat(upperCaseLetters);
+  finalCharacter.push(randomIndex(upperCaseLetters));
+  console.log(finalCharacter);
+  console.log(roughCharacters);
+}
+
+if (options.lowerCase){
+  roughCharacters = roughCharacters.concat(lowerCaseLetters);
+  finalCharacter.push(randomIndex(lowerCaseLetters));
+  console.log(finalCharacter);
+  console.log(roughCharacters);
+}
+
+if (options.numeric){
+  roughCharacters = roughCharacters.concat(numericArray);
+  finalCharacter.push(randomIndex(numericArray));
+  console.log(finalCharacter);
+  console.log(roughCharacters);
+}
+
+if (options.special){
+  roughCharacters = roughCharacters.concat(specialArray);
+  finalCharacter.push(randomIndex(specialArray));
+  console.log(finalCharacter);
+  console.log(roughCharacters);
+}
+
+//Generate password based off user input
+for (var i = 0; i < options.length; i++){
+  var randomCharacter = randomIndex(roughCharacters);
+  console.log(randomCharacter);
+  result.push(randomCharacter);
+console.log(result);
+}
+
+for (var i = 0; i < finalCharacter.length; i++){
+  result[i] = finalCharacter[i];
+  console.log(finalCharacter);
+}
+return result.join("");
+}
+
 
 // Write password to the #password input
 function writePassword() {
