@@ -13,7 +13,9 @@ var specialArray = ["~","!","@","#","$","%","^","&","*","(",")","_","-","+","=",
 
 function userSelection(){
 // Prompts for user options
-  var length = window.prompt ("Choose a lenghth between 8-128 characters long.");
+
+// Add parseInt to convert string to number
+  var length = parseInt(window.prompt ("Choose a lenghth between 8-128 characters long."));
   console.log(length);
 
   if (length < 8 || length > 128) {
@@ -36,7 +38,18 @@ function userSelection(){
     alert("Must choose at least one character type!");
     return;
   }
-}
+
+  //select random index
+function randomIndex(array){
+  var randIndex = Math.floor(Math.random() * array.length);
+  console.log(randIndex);
+  
+  var randElement = array[randIndex];
+  console.log(randElement);
+  return randElement;
+  }
+  
+
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
