@@ -19,7 +19,7 @@ function userSelection(){
   if (length < 8 || length > 128 || !length) {
     alert ("Password length must be between 8 and 128 characters long.");
     return userSelection();
-  }// return if length criteria is not met 
+  }//how to create false return when cancel is clicked
   
   var criteria = window.alert ("Must choose one of the following criteria.");
   console.log(criteria);
@@ -35,8 +35,16 @@ function userSelection(){
   //Validate user input 
   if (!upperCase && !lowerCase && !numeric && !special){
     alert("Must choose at least one character type!");
-    return userSelection();
-  }// return if criteria is not met 
+    return userSelection;
+  }
+  var userOptions = {
+    length:length,
+    upperCase:upperCase,
+    lowerCase:lowerCase,
+    numeric:numeric,
+    special:special,
+  }
+  return userOptions
 }
 
 //select random index
