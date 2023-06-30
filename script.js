@@ -13,13 +13,14 @@ var specialArray = ["~","!","@","#","$","%","^","&","*","(",")","_","-","+","=",
 
 function userSelection(){
 // Prompts for user options
-  var length = parseInt(window.prompt ("Choose a lenghth between 8-128 characters long."));
+  var length = parseInt(window.prompt ("Choose a length between 8-128 characters long."));
   console.log(length);
 
-  if (length < 8 || length > 128) {
+  if (length < 8 || length > 128 || !length) {
     alert ("Password length must be between 8 and 128 characters long.");
-    return window.prompt;
-  }
+    return userSelection();
+  }// return if length criteria is not met 
+  
   var criteria = window.alert ("Must choose one of the following criteria.");
   console.log(criteria);
   var upperCase = window.confirm ("Would you like to use upper case letters?");
@@ -34,17 +35,8 @@ function userSelection(){
   //Validate user input 
   if (!upperCase && !lowerCase && !numeric && !special){
     alert("Must choose at least one character type!");
-    return;
-  }
-
-  var userOptions = {
-    length:length,
-    upperCase:upperCase,
-    lowerCase:lowerCase,
-    numeric:numeric,
-    special:special,
-  }
-  return userOptions;
+    return userSelection();
+  }// return if criteria is not met 
 }
 
 //select random index
@@ -57,14 +49,14 @@ console.log(randElement);
 return randElement;
 }
 
-
 function generatePassword(){
+//vars to plug into functions
 var options = userSelection();
 var result = [];
 var roughCharacters = [];
 var finalCharacter = [];
 
-//randomize character selections
+//function to randomize character selections
 if (options.upperCase){
   roughCharacters = roughCharacters.concat(upperCaseLetters);
   finalCharacter.push(randomIndex(upperCaseLetters));
@@ -93,7 +85,7 @@ if (options.special){
   console.log(roughCharacters);
 }
 
-//Generate password based off user input
+//for loop function to generate password based off random index
 for (var i = 0; i < options.length; i++){
   var randomCharacter = randomIndex(roughCharacters);
   console.log(randomCharacter);
