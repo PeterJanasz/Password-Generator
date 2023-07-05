@@ -2,9 +2,9 @@
 var generateBtn = document.querySelector("#generate");
 
 // Array of characters
-var upperCaseLetters =  ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var upperCaseArray =  ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
-var lowerCaseLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+var lowerCaseArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
 var numericArray = ["0","1","2","3","4","5","6","7","8","9"]
 
@@ -19,9 +19,9 @@ function userSelection(){
   if (length < 8 || length > 128 || !length) {
     alert ("Password length must be between 8 and 128 characters long.");
     return userSelection();
-  }//how to create false return when cancel is clicked
+  }//go back to prompt if less than 8 or more than 128 charactr selected
   
-  var criteria = window.alert ("Must choose one of the following criteria.");
+  var criteria = window.alert ("Must choose at least one of the following criteria.");
   console.log(criteria);
   var upperCase = window.confirm ("Would you like to use upper case letters?");
   console.log(upperCase);
@@ -32,7 +32,7 @@ function userSelection(){
   var special = window.confirm ("Would you like to use special characters?");
   console.log(special);
 
-  //Validate user input 
+  //Validate user input, if nothing selected return 
   if (!upperCase && !lowerCase && !numeric && !special){
     alert("Must choose at least one character type!");
     return userSelection;
@@ -58,44 +58,44 @@ return randElement;
 }
 
 function generatePassword(){
-//vars to plug into functions
+//empty arrays to plug 
 var options = userSelection();
 var result = [];
-var roughCharacters = [];
+var Characters = [];
 var finalCharacter = [];
 
 //function to randomize character selections
 if (options.upperCase){
-  roughCharacters = roughCharacters.concat(upperCaseLetters);
-  finalCharacter.push(randomIndex(upperCaseLetters));
+  Characters = Characters.concat(upperCaseArray);
+  finalCharacter.push(randomIndex(upperCaseArray));
   console.log(finalCharacter);
-  console.log(roughCharacters);
+  console.log(Characters);
 }
 
 if (options.lowerCase){
-  roughCharacters = roughCharacters.concat(lowerCaseLetters);
-  finalCharacter.push(randomIndex(lowerCaseLetters));
+  Characters = Characters.concat(lowerCaseArray);
+  finalCharacter.push(randomIndex(lowerCaseArray));
   console.log(finalCharacter);
-  console.log(roughCharacters);
+  console.log(Characters);
 }
 
 if (options.numeric){
-  roughCharacters = roughCharacters.concat(numericArray);
+  Characters = Characters.concat(numericArray);
   finalCharacter.push(randomIndex(numericArray));
   console.log(finalCharacter);
-  console.log(roughCharacters);
+  console.log(Characters);
 }
 
 if (options.special){
-  roughCharacters = roughCharacters.concat(specialArray);
+  Characters = Characters.concat(specialArray);
   finalCharacter.push(randomIndex(specialArray));
   console.log(finalCharacter);
-  console.log(roughCharacters);
+  console.log(Characters);
 }
 
 //for loop function to generate password based off random index
 for (var i = 0; i < options.length; i++){
-  var randomCharacter = randomIndex(roughCharacters);
+  var randomCharacter = randomIndex(Characters);
   console.log(randomCharacter);
   result.push(randomCharacter);
 console.log(result);
