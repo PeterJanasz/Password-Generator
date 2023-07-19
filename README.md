@@ -11,4 +11,4 @@ Used object-oriented programming to enter user data and create functions to gene
 
 ![Screenshot of website](assets/images/../../Assets/Screenshot%202023-07-05%20at%2012.23.00%20PM.png)
 
- - [Deployed] https://peterjanasz.github.io/Password-Generator/
+ - [Deployed] https://peterjanasz.github.io/Password-Generator-M3/
